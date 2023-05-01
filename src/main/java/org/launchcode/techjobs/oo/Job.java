@@ -47,7 +47,12 @@ public class Job {
 
     @Override
     public String toString(){
-        return "Job";
+        return "\n ID: " + id + "\n" +
+                "Name: " + name + "\n" +
+                "Employer: " + employer + "\n" +
+                "Location: " + location + "\n" +
+                "Position Type: " + positionType + "\n" +
+                "Competency: " + coreCompetency + "\n\n";
     }
 
 
