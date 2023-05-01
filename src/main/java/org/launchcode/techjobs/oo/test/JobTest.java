@@ -23,13 +23,14 @@ public class JobTest {
         @Test
         public void testJobConstructorSetsAllFields(){
         Job jobsTest = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
-
-            assertTrue(jobsTest.getName() instanceof String);
+        //checks that class and value is properly assigned
+            assertTrue(jobsTest.getName() instanceof String); //checks that the objects is an instance of the name Sting
             assertTrue(jobsTest.getEmployer() instanceof Employer);
             assertTrue(jobsTest.getLocation() instanceof Location);
             assertTrue(jobsTest.getPositionType() instanceof PositionType);
             assertTrue(jobsTest.getCoreCompetency() instanceof CoreCompetency);
 
+            //checks each field is properly assigned...chatGPT is awesome
             assertEquals("Product tester", jobsTest.getName());
             assertEquals("ACME", jobsTest.getEmployer().getValue());
             assertEquals("Desert", jobsTest.getLocation().getValue());
@@ -41,9 +42,22 @@ public class JobTest {
         public void testJobsForEquality(){
             Job job1 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
             Job job2 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
-
+        //
             boolean result = job1.equals(job2);
-            assertFalse(result);
+            assertFalse(result); //checks the result is false.. again chatGPT for the reference
+        }
+
+        @Test
+    public void testToStringStartsAndEndsWithNewLine(){
+            Job job1 = new Job("Product tester", new Employer("ACME"), new Location("Desert"), new PositionType("Quality control"), new CoreCompetency("Persistence"));
+            String expectedData = "ID: 1\n" +
+                    "Name: Product tester\n" +
+                    "Employer: ACME\n" +
+                    "Location: Desert\n" +
+                    "Position Type: Quality control\n" +
+                    "Competency: Persistence\n\n";
+            assertEquals('\n' + expectedData + '\n', job1.toString());
+
         }
 
     }
