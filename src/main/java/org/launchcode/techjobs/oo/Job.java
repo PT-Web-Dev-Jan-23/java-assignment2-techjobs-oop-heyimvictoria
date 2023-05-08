@@ -47,12 +47,20 @@ public class Job {
 
     @Override
     public String toString(){
-        return "\n ID: " + id + "\n" +
+
+        if(this.employer.getValue().equals("")){
+            this.employer.setValue("Data not available");
+        }
+        if(this.positionType.getValue().equals("")){
+            this.positionType.setValue("Data not available");
+        }
+        return "\n" +
+                "ID: " + id + "\n" +
                 "Name: " + name + "\n" +
                 "Employer: " + employer + "\n" +
                 "Location: " + location + "\n" +
                 "Position Type: " + positionType + "\n" +
-                "Competency: " + coreCompetency + "\n\n";
+                "Core Competency: " + coreCompetency + "\n";
     }
 
 

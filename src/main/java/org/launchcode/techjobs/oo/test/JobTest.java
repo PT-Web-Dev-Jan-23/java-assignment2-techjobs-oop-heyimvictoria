@@ -49,29 +49,48 @@ public class JobTest {
 
         @Test
     public void testToStringStartsAndEndsWithNewLine(){
-            Job job1 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
+            Job job3 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
             String expectedData = "\nID: 1\n" +
                     "\nName: Web Developer\n" +
                     "\nEmployer: LaunchCode\n" +
                     "\nLocation: St. Louis" +
                     "\nPosition Type: Front-end developer\n" +
                     "\nCompetency: JavaScript\n\n";
-            assertEquals(expectedData.charAt(0), job1.toString().charAt(0));
+            assertEquals(expectedData.charAt(0), job3.toString().charAt(0));
             //second assertEquals checks for the last character newline
-            assertEquals(expectedData.charAt(expectedData.length()-1), job1.toString().charAt(job1.toString().length()-1));
+            assertEquals(expectedData.charAt(expectedData.length()-1), job3.toString().charAt(job3.toString().length()-1));
         }
         @Test
-        public void testToStringContainsCorrectLabelsAndData(){
-            Job job = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
-            String jobString = job.toString();
+        public void testToStringContainsCorrectLabelsAndData() {
+            Job job4 = new Job("Web Developer", new Employer("LaunchCode"), new Location("St. Louis"), new PositionType("Front-end developer"), new CoreCompetency("JavaScript"));
+            String jobString = job4.toString();
             //created a job object and called the toString method to get the string representation of the object.
-            // ..may refactor this seems like a lot but it passes
-            assertTrue(jobString.contains("ID: 1"));
+            String dataExpected = "\nID: 4\n" +
+                    "Name: Web Developer\n" +
+                    "Employer: LaunchCode\n" +
+                    "Location: St. Louis\n" +
+                    "Position Type: Front-end developer\n" +
+                    "Core Competency: JavaScript\n";
+            assertEquals(dataExpected, jobString.toString());
+        }
+           /* assertTrue(jobString.contains("ID: "));
             assertTrue(jobString.contains("Name: Web Developer"));
             assertTrue(jobString.contains("Employer: LaunchCode"));
             assertTrue(jobString.contains("Location: St. Louis"));
             assertTrue(jobString.contains("Position Type: Front-end developer"));
-            assertTrue(jobString.contains("Competency: JavaScript"));
-            //chatGPT suggested using assertTrue, checking that the resulting string contains labels for the fields. passes, but fails when ran together
+            assertTrue(jobString.contains("Core Competency: JavaScript"));*/
+
+            // so initially tried with the assertTrue but i kept getting assertion, missing invocation errors, so i refactored to try it the same way i used above with the assertEquals
+
+        @Test
+        public void testToStringHandlesEmptyField(){
+            Job job5 = new Job("Web Developer", new Employer(""), new Location("St. Louis"), new PositionType(""), new CoreCompetency("JavaScript"));
+            String expectedData2 = "\nID: 3\n" +
+                    "Name: Web Developer\n" +
+                    "Employer: Data not available\n" +
+                    "Location: St. Louis\n" +
+                    "Position Type: Data not available\n" +
+                    "Core Competency: JavaScript\n";
+            assertEquals(expectedData2, job5.toString());
         }
     }
